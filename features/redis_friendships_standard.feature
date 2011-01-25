@@ -14,7 +14,7 @@ Feature: Redis Friendship Generator
 	And I should see "R.sadd("friendship:#{username}:followings", followed_username)" in file "app/models/friendship.rb"
 	And I should see "R.sadd("friendship:#{followed_username}:followings", username)" in file "app/models/friendship.rb"
 
-    And I should see "def self.stop_following!(username, followed_username)" in file "app/models/friendship.rb"
+    And I should see "def self.unfollow!(username, followed_username)" in file "app/models/friendship.rb"
     And I should see "R.srem("friendship:#{username}:followings", followed_username)" in file "app/models/friendship.rb"
     And I should see "R.srem("friendship:#{followed_username}:followings", username)" in file "app/models/friendship.rb"
 
@@ -22,7 +22,7 @@ Feature: Redis Friendship Generator
     And I should see "R.sismember("friendship:#{username}:followings", followed_username)" in file "app/models/friendship.rb"
 
   	And I should see "def self.followed_by?(user, following_user)" in file "app/models/friendship.rb"
-  	And I should see "  R.sismember("friendship:#{username}:followers", following_username)" in file "app/models/friendship.rb"    
+  	And I should see "R.sismember("friendship:#{username}:followers", following_username)" in file "app/models/friendship.rb"    
 
 	And I should see "def self.followings_for(username)" in file "app/models/friendship.rb"
   	And I should see "R.smembers("friendship:#{username}:followings")" in file "app/models/friendship.rb"
@@ -45,8 +45,8 @@ Feature: Redis Friendship Generator
 	And I should see "Friendship.follow!(self.username, user.username)" in file "app/models/user.rb"
 	And I should see "true" in file "app/models/user.rb"
   
-	And I should see "def stop_following!(user)" in file "app/models/user.rb"
-	And I should see "Friendship.stop_following!(self.username, user.username)" in file "app/models/user.rb"
+	And I should see "def unfollow!(user)" in file "app/models/user.rb"
+	And I should see "Friendship.unfollow!(self.username, user.username)" in file "app/models/user.rb"
   
 	And I should see "def followers" in file "app/models/user.rb"
 	And I should see "followers = Friendship.followers_for(self.username)" in file "app/models/user.rb"

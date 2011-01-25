@@ -23,8 +23,8 @@ Feature: Redis Messages Generator With Existing User Model
 	And I should see "Fellowship.follow!(self.username, user.username)" in file "app/models/hobbit.rb"
 	And I should see "true" in file "app/models/hobbit.rb"
   
-	And I should see "def stop_following!(user)" in file "app/models/hobbit.rb"
-	And I should see "Fellowship.stop_following!(self.username, user.username)" in file "app/models/hobbit.rb"
+	And I should see "def unfollow!(user)" in file "app/models/hobbit.rb"
+	And I should see "Fellowship.unfollow!(self.username, user.username)" in file "app/models/hobbit.rb"
   
 	And I should see "def followers" in file "app/models/hobbit.rb"
 	And I should see "followers = Fellowship.followers_for(self.username)" in file "app/models/hobbit.rb"

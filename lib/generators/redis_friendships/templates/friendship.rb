@@ -5,7 +5,7 @@ class <%= friendship_class_name %>
     <%=redis_constant_name%>.sadd("<%=friendship_singular_name%>:#{followed_username}:followings", username)
   end
   
-  def self.stop_following!(username, followed_username)
+  def self.unfollow!(username, followed_username)
     <%=redis_constant_name%>.srem("<%=friendship_singular_name%>:#{username}:followings", followed_username)
     <%=redis_constant_name%>.srem("<%=friendship_singular_name%>:#{followed_username}:followings", username)
   end

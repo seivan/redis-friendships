@@ -41,7 +41,7 @@ It will also make that user a following to the other_user_
 other_user.followings.include? user
 
 To unfollow someone (or have someone unfollowed, just edit it to your hearts desire)
-	user.stop_following!(other_user)
+	user.unfollow!(other_user)
 This will remove it from user's SET. There are no limits to what you can do.
 Will also remove the user as a following from other_user
 other_user.followings.include?(user) == false

@@ -12,8 +12,8 @@
     true
   end
   
-  def stop_following!(user)
-      <%=friendship_class_name%>.stop_following!(self.username, user.username)
+  def unfollow!(user)
+      <%=friendship_class_name%>.unfollow!(self.username, user.username)
   end
 
   
