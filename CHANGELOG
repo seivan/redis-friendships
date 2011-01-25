@@ -1,0 +1,3 @@
+0.1 (January 25, 2010)
+Doing initial Redis friendship generator, will be a swift move to 1.0
+Tests are done, but need refactoring. Need to make banners/descriptions to the generators

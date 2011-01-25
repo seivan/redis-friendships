@@ -1,0 +1,51 @@
+== What is redis-friendship
+  A friendship library with a certain follower/following system utilizing the power of both Redis and SQL. Using SQL for the users and Redis for the followers and the followings. Redis uses sets of usernames for both your followers and followings. And can be used to retrieve more information about your e.g. followers from SQL with those unique usernames. 
+
+== Install
+
+  gem install redis-friendships
+
+== Rails 3
+
+To use redis-friendships with Rails 3 you will need to include it in your Gemfile.
+
+group :development do
+  gem "redis-friendships"
+end
+
+== Usage
+  * rails g redis_friendships  : Will name the models User and Friendship and the Redis constant to R
+  
+  * rails g redis_friendships fellowship user : Assuming the User model already exist, this will inject code into it and create a Fellowship model
+
+  * rails g redis_friendships fellowship hobbit Red : Creates the models Fellowship and Hobbit and name the Redis constant to Red
+
+  * And don't forget to run your migrations since we also utilize SQL here, the user model will be SQL - anything else would be stupid, right?
+
+== Code
+== READ
+Assuming we use standard naming the user model will have two lookup scopes
+The first two are
+  user.followers and user.followings
+Where we do a SQL lookup with the list of usernames from the SET to get a list of user objects
+
+If you don't want the user objects but just their (unique) usernames
+  Friendship.followings_for(username)
+  Friendship.followers_for(username)
+	
+== WRITE
+To follow someone you just need to call 
+	user.follow!(other_user)
+This will just push the username into a SET.
+It will also make that user a following to the other_user_
+other_user.followings.include? user
+
+To unfollow someone (or have someone unfollowed, just edit it to your hearts desire)
+	user.stop_following!(other_user)
+This will remove it from user's SET. There are no limits to what you can do.
+Will also remove the user as a following from other_user
+other_user.followings.include?(user) == false
+
+PS
+You can also alter the methods to auto follow new followers or have requests before being stalked
+DS

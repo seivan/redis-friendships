@@ -1,0 +1,1 @@
+<%= redis_constant_name %> = Redis.new
