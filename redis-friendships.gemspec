@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-VERSION = "0.1"
+VERSION = "0.2"
 
 Gem::Specification.new do |s|
   s.name        = "redis-friendships"
