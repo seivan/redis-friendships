@@ -50,7 +50,7 @@ PS
 You can also alter the methods to auto follow new followers or have requests before being stalked
 DS
 
-Copyright (c) 2011 Seifvan Heifdari auf Awesomeness Von Cheeseburger
+Copyright (c) 2011 Seifvan Heifdari af Awesomeness Von Cheeseburger
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
